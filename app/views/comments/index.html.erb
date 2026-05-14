@@ -1,0 +1,43 @@
+<% content_for :title, "Comments" %>
+
+<div class="space-y-6">
+  <section class="bg-white rounded-lg border border-slate-200 shadow-sm p-4">
+    <%= form_with url: search_comments_path, method: :get, class: "flex gap-2", data: { turbo_frame: "_top" } do |f| %>
+      <%= f.search_field :q, value: @query, placeholder: "Search comments...",
+            class: "flex-1 rounded-md border border-slate-300 px-3 py-2 focus:border-indigo-500 focus:ring focus:ring-indigo-100 focus:outline-none" %>
+      <%= f.submit "Search", class: "px-4 py-2 rounded-md bg-slate-800 hover:bg-slate-900 text-white font-medium cursor-pointer" %>
+      <% if @query.present? %>
+        <%= link_to "Clear", root_path, class: "px-3 py-2 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-700" %>
+      <% end %>
+    <% end %>
+    <% if @query.present? %>
+      <p class="mt-2 text-sm text-slate-500">Results for "<span class="font-semibold"><%= @query %></span>": <%= @comments.size %></p>
+    <% end %>
+  </section>
+
+  <% if user_signed_in? %>
+    <section class="bg-white rounded-lg border border-slate-200 shadow-sm p-4">
+      <h2 class="text-lg font-semibold mb-3">Post a comment</h2>
+      <%= turbo_frame_tag "new_comment" do %>
+        <%= render "form", comment: @comment %>
+      <% end %>
+    </section>
+  <% else %>
+    <div class="rounded-md bg-indigo-50 border border-indigo-200 px-4 py-3 text-indigo-800">
+      <%= link_to "Log in", new_user_session_path, class: "font-semibold underline" %> or
+      <%= link_to "sign up", new_user_registration_path, class: "font-semibold underline" %>
+      to post a comment.
+    </div>
+  <% end %>
+
+  <section>
+    <h2 class="text-lg font-semibold mb-3 text-slate-700"><%= @query.present? ? "Search results" : "Recent comments" %></h2>
+    <div id="comments" class="space-y-3">
+      <% if @comments.any? %>
+        <%= render @comments %>
+      <% else %>
+        <p class="text-slate-500 italic">No comments yet.</p>
+      <% end %>
+    </div>
+  </section>
+</div>

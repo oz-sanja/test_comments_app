@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create:*)",
+      "Bash(nvm ls:*)",
+      "Bash(brew list:*)",
+      "Read(//usr/local/bin/**)",
+      "Read(//opt/homebrew/bin/**)",
+      "Bash(brew install:*)",
+      "Bash(brew upgrade:*)",
+      "Bash(ruby -v)",
+      "Bash(rails -v)",
+      "Bash(docker compose *)",
+      "Read(//Users/olexandrzabutovskyi/.rbenv/versions/**)",
+      "Read(//Users/olexandrzabutovskyi/.asdf/installs/**)",
+      "Bash(rbenv versions *)",
+      "Bash(rbenv install *)",
+      "Bash(curl -s -o /dev/null -w \"ROOT \\(unauth\\): %{http_code}\\\\n\" http://127.0.0.1:3000/)",
+      "Bash(curl -s http://127.0.0.1:3000/)",
+      "Bash(curl -s -o /dev/null -w \"cable: %{http_code}\\\\n\" -H \"Connection: Upgrade\" -H \"Upgrade: websocket\" -H \"Origin: http://127.0.0.1:3000\" -H \"Sec-WebSocket-Version: 13\" -H \"Sec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==\" http://127.0.0.1:3000/cable)",
+      "Read(//private/tmp/**)"
+    ]
+  }
+}

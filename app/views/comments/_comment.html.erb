@@ -1,0 +1,25 @@
+<article id="<%= dom_id(comment) %>" class="bg-white rounded-lg border border-slate-200 shadow-sm p-4">
+  <header class="flex items-center justify-between mb-2">
+    <div class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-sm">
+        <%= comment.user.username[0].upcase %>
+      </div>
+      <div>
+        <div class="font-semibold text-slate-800">@<%= comment.user.username %></div>
+        <div class="text-xs text-slate-500"><%= time_ago_in_words(comment.created_at) %> ago</div>
+      </div>
+    </div>
+    <% if user_signed_in? && comment.user_id == current_user.id %>
+      <div class="flex items-center gap-1 text-sm">
+        <%= link_to "Edit", edit_comment_path(comment), class: "px-2 py-1 rounded hover:bg-slate-100 text-slate-600" %>
+        <%= button_to "Delete", comment_path(comment), method: :delete,
+              data: { turbo_confirm: "Delete this comment?" },
+              class: "px-2 py-1 rounded hover:bg-rose-50 text-rose-600 cursor-pointer" %>
+      </div>
+    <% end %>
+  </header>
+
+  <div class="text-slate-800 whitespace-pre-wrap leading-relaxed">
+    <%= linkify_mentions(comment.body) %>
+  </div>
+</article>

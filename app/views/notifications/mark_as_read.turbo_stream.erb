@@ -1,0 +1,2 @@
+<%= turbo_stream.replace @notification, partial: "notifications/notification", locals: { notification: @notification } %>
+<%= turbo_stream.replace "notifications_badge", partial: "shared/notifications_badge", locals: { count: current_user.notifications.unread.count } %>

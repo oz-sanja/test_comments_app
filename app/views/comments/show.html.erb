@@ -1,0 +1,6 @@
+<% content_for :title, "Comment" %>
+
+<div class="space-y-4">
+  <%= render @comment %>
+  <%= link_to "← Back to all comments", root_path, class: "text-indigo-700 hover:underline" %>
+</div>
