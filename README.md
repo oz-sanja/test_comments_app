@@ -88,7 +88,7 @@ curl -s -H "Authorization: Bearer masterKey" \
 ## Tests
 
 ```bash
-bin/rails test
+bundle exec rspec
 ```
 
 ## Project layout highlights
